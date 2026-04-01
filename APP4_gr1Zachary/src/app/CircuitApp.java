@@ -4,17 +4,19 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CircuitApp {
-    public String reponseFinal="0";
+
     public CircuitApp() {
-        demandeInfoFichierDispo(reponseFinal);
+        demandeInfoFichierDispo();
     }
 
     public static void main(String[] args) {
         new CircuitApp();
     }
 
-    private String demandeInfoFichierDispo(String reponseFinal) {
+    private String demandeInfoFichierDispo() {
         boolean valide = false;
+         String reponseFinal="gggg";
+         String choixFichier="";
         Scanner sc = new Scanner(System.in);
         System.out.println("type de fichier disponible:\n" +
                 "[1]circuit nord.json\n" +
@@ -27,13 +29,13 @@ public class CircuitApp {
                 if (reponseFichier <= 3 && reponseFichier >= 1) {
 
                     if (reponseFichier == 1) {
-                        reponseFinal="nord.json";
+                        choixFichier="nord.json";
                     } else if (reponseFichier==2) {
-                      reponseFinal="quartier.json";
+                      choixFichier="quartier.json";
                     } else if (reponseFichier==3) {
-                        reponseFinal="hopital.json";
+                        choixFichier="hopital.json";
                     }
-                    System.out.println("OUVERTURE DU FICHIER "+reponseFinal+"!");
+                    System.out.println("OUVERTURE DU FICHIER "+choixFichier+"!");
 
                     valide = true;
                 } else {
@@ -49,6 +51,8 @@ public class CircuitApp {
                 sc.next();
             }
         }
-       return reponseFinal;
+      return choixFichier;
     }
+
+
 }
