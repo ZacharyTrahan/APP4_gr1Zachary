@@ -8,7 +8,7 @@ public class Resistance extends Composant{
 
     @Override
     public double calculerResistance() {
-
-        return 0;
+double resistanceGen=6;
+        return resistanceGen;
     }
 }
