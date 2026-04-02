@@ -1,14 +1,17 @@
 package app;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CircuitApp {
+    private Scanner sc = new Scanner(System.in);
 
     public CircuitApp() {
-        demandeInfoFichierDispo();
-        utilisationFichier();
-        requestionnement();
+        boolean boucleRequstionnement = true;
+        while (boucleRequstionnement) {
+            String fichier = demandeInfoFichierDispo();
+            utilisationFichier();
+            boucleRequstionnement = requestionnement();
+        }
     }
 
     public static void main(String[] args) {
@@ -17,19 +20,18 @@ public class CircuitApp {
 
     private String demandeInfoFichierDispo() {
         boolean valide = false;
-        String reponseFinal = "gggg";
         String choixFichier = "";
-        Scanner sc = new Scanner(System.in);
-        System.out.println("type de fichier disponible:\n" +
-                "[1]circuit nord.json\n" +
-                "[2]circuit quartier.json\n" +
-                "[3]circuit hopital.json\n");
-        System.out.println("Quelles fichiers voulez vous accèder?");
+        System.out.println("\nType de fichier disponible:\n" +
+                "[1] circuit nord.json\n" +
+                "[2] circuit quartier.json\n" +
+                "[3] circuit hopital.json");
+        System.out.print("Quel fichier voulez-vous accéder ? : ");
+
         while (!valide) {
             if (sc.hasNextInt()) {
                 int reponseFichier = sc.nextInt();
-                if (reponseFichier <= 3 && reponseFichier >= 1) {
-
+                sc.nextLine();
+                if (reponseFichier >= 1 && reponseFichier <= 3) {
                     if (reponseFichier == 1) {
                         choixFichier = "nord.json";
                     } else if (reponseFichier == 2) {
@@ -37,42 +39,38 @@ public class CircuitApp {
                     } else if (reponseFichier == 3) {
                         choixFichier = "hopital.json";
                     }
-                    System.out.println("OUVERTURE DU FICHIER " + choixFichier + "!");
 
+                    System.out.println("OUVERTURE DU FICHIER " + choixFichier + " !");
                     valide = true;
                 } else {
-                    valide = false;
-                    System.out.println("Erreur: réponse non comprise dans les choix proposés\n " +
-                            "vieuller entrer un chiffre valide");
-                    sc.next();
+                    System.out.println("Erreur: Entrez un chiffre entre 1 et 3.");
+
                 }
             } else {
-
-                System.out.println("Erreur: reponse non comprise dans les choix proposer\n " +
-                        "veuiller entrer un chiffre valide.");
-                sc.next();
+                System.out.println("Erreur: Veuillez entrer un nombre valide.");
+                sc.nextLine();
             }
         }
         return choixFichier;
     }
 
     public void utilisationFichier() {
+        System.out.println("construction de circuit.");
         CircuitBuilder cb = new CircuitBuilder();
         cb.construireCircuit();
     }
 
-    public void requestionnement() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("[R] Tester un autre fihcier :" +
-                "[Q] Quitter");
-        String reponse = sc.nextLine();
-        String reponseConverti = reponse.toUpperCase();
-        if (reponseConverti.equals("R")) {
-            demandeInfoFichierDispo();
-        } else if (reponseConverti.equals("Q")) {
-            System.out.println("bonne journée");
-            System.exit(0);
+    public boolean requestionnement() {
+        System.out.println("\n[R] Recommencer\n[Q] Quitter");
+        String reponse = sc.nextLine().toUpperCase();
+
+        if (reponse.equals("R")) {
+            return true;
+        } else {
+            System.out.println("Bonne journée !");
+            return false;
         }
     }
-
 }
+
+
