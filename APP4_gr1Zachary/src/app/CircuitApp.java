@@ -7,6 +7,8 @@ public class CircuitApp {
 
     public CircuitApp() {
         demandeInfoFichierDispo();
+        utilisationFichier();
+        requestionnement();
     }
 
     public static void main(String[] args) {
@@ -15,8 +17,8 @@ public class CircuitApp {
 
     private String demandeInfoFichierDispo() {
         boolean valide = false;
-         String reponseFinal="gggg";
-         String choixFichier="";
+        String reponseFinal = "gggg";
+        String choixFichier = "";
         Scanner sc = new Scanner(System.in);
         System.out.println("type de fichier disponible:\n" +
                 "[1]circuit nord.json\n" +
@@ -29,13 +31,13 @@ public class CircuitApp {
                 if (reponseFichier <= 3 && reponseFichier >= 1) {
 
                     if (reponseFichier == 1) {
-                        choixFichier="nord.json";
-                    } else if (reponseFichier==2) {
-                      choixFichier="quartier.json";
-                    } else if (reponseFichier==3) {
-                        choixFichier="hopital.json";
+                        choixFichier = "nord.json";
+                    } else if (reponseFichier == 2) {
+                        choixFichier = "quartier.json";
+                    } else if (reponseFichier == 3) {
+                        choixFichier = "hopital.json";
                     }
-                    System.out.println("OUVERTURE DU FICHIER "+choixFichier+"!");
+                    System.out.println("OUVERTURE DU FICHIER " + choixFichier + "!");
 
                     valide = true;
                 } else {
@@ -51,8 +53,26 @@ public class CircuitApp {
                 sc.next();
             }
         }
-      return choixFichier;
+        return choixFichier;
     }
 
+    public void utilisationFichier() {
+        CircuitBuilder cb = new CircuitBuilder();
+        cb.construireCircuit();
+    }
+
+    public void requestionnement() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("[R] Tester un autre fihcier :" +
+                "[Q] Quitter");
+        String reponse = sc.nextLine();
+        String reponseConverti = reponse.toUpperCase();
+        if (reponseConverti.equals("R")) {
+            demandeInfoFichierDispo();
+        } else if (reponseConverti.equals("Q")) {
+            System.out.println("bonne journée");
+            System.exit(0);
+        }
+    }
 
 }
