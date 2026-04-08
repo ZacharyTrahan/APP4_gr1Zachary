@@ -74,10 +74,18 @@ public class CircuitApp {
 
         if (reponse.equals("R")) {
             return true;
-        } else {
-            System.out.printf("fermeture du fichier en cours.");
-            System.out.println("Bonne journée !");
         }
+        if (reponse.equals("Q")) {
+            System.out.println("fermeture du fichier en cours.");
+            System.out.println("Bonne journée !");
+            return false;
+        }
+        else{
+            System.out.println("reponse non compris dans les choix :");
+            requestionnement();
+            return Boolean.parseBoolean(null);
+        }
+
     }
 }
 

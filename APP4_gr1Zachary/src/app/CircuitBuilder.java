@@ -4,13 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import electrique.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.List;
-
 import static app.CircuitApp.pathIn;
 
 
