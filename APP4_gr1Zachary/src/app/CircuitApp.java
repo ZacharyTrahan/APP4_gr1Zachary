@@ -1,24 +1,30 @@
 package app;
 
+import java.io.File;
 import java.util.Scanner;
+
 
 public class CircuitApp {
     private Scanner sc = new Scanner(System.in);
+    private static final char fSep = File.separatorChar;
+    protected static String pathIn;
 
     public CircuitApp() {
+
         boolean boucleRequstionnement = true;
         while (boucleRequstionnement) {
-            String fichier = demandeInfoFichierDispo();
+            demandeInfoFichierDispo();
             utilisationFichier();
             boucleRequstionnement = requestionnement();
         }
+
     }
 
     public static void main(String[] args) {
         new CircuitApp();
     }
 
-    private String demandeInfoFichierDispo() {
+    public String demandeInfoFichierDispo() {
         boolean valide = false;
         String choixFichier = "";
         System.out.println("\nType de fichier disponible:\n" +
@@ -33,11 +39,12 @@ public class CircuitApp {
                 sc.nextLine();
                 if (reponseFichier >= 1 && reponseFichier <= 3) {
                     if (reponseFichier == 1) {
-                        choixFichier = "nord.json";
+                        pathIn = System.getProperty("user.dir") + fSep + "APP4_gr1Zachary" + fSep + "src" + fSep + "donnee" + fSep + "fichiers_json" + fSep + "complexe_industriel_zone_nord.json";
+
                     } else if (reponseFichier == 2) {
-                        choixFichier = "quartier.json";
+                        pathIn = System.getProperty("user.dir") + fSep + "APP4_gr1Zachary" + fSep + "src" + fSep + "donnee" + fSep + "fichiers_json" + fSep + "eclairage_public_quartier.json";
                     } else if (reponseFichier == 3) {
-                        choixFichier = "hopital.json";
+                        pathIn = System.getProperty("user.dir") + fSep + "APP4_gr1Zachary" + fSep + "src" + fSep + "donnee" + fSep + "fichiers_json" + fSep + "reseau_secours_hopital.json";
                     }
 
                     System.out.println("OUVERTURE DU FICHIER " + choixFichier + " !");
@@ -51,8 +58,9 @@ public class CircuitApp {
                 sc.nextLine();
             }
         }
-        return choixFichier;
+        return pathIn;
     }
+
 
     public void utilisationFichier() {
         System.out.println("construction de circuit.");
@@ -67,10 +75,11 @@ public class CircuitApp {
         if (reponse.equals("R")) {
             return true;
         } else {
+            System.out.printf("fermeture du fichier en cours.");
             System.out.println("Bonne journée !");
-            return false;
         }
     }
 }
+
 
 

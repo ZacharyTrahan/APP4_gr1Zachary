@@ -7,7 +7,6 @@ public class CircuitSerie extends Circuit {
 
     public CircuitSerie(List<Composant> composants) {
         super(composants);
-        System.out.println("Résistance équivalente calculée : " + calculerResistance() + "Ω");
     }
 
 
