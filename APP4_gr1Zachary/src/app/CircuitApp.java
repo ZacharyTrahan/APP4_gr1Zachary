@@ -1,13 +1,14 @@
 package app;
 
-import org.w3c.dom.ls.LSOutput;
+import electrique.Composant;
+
 
 import java.io.File;
 import java.util.Scanner;
 
 
 public class CircuitApp {
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
     private static final char fSep = File.separatorChar;
     protected static String pathIn;
 
@@ -29,7 +30,7 @@ public class CircuitApp {
     public String demandeInfoFichierDispo() {
         boolean valide = false;
         String choixFichier = "";
-        System.out.println("\nType de fichier disponible:\n" +
+        System.out.println("Type de fichier disponible:\n" +
                 "[1] circuit nord.json\n" +
                 "[2] circuit quartier.json\n" +
                 "[3] circuit hopital.json");
@@ -67,7 +68,10 @@ public class CircuitApp {
     public void utilisationFichier() {
         System.out.println("construction de circuit.");
         CircuitBuilder cb = new CircuitBuilder();
+        Composant circuit = cb.construireCircuit();
         cb.construireCircuit();
+        String limitationDeuxApresVirgule = String.format("%.2f%n",circuit.calculerResistance());
+        System.out.println("La résistance totale est : " + limitationDeuxApresVirgule + " Ohms");
     }
 
     public boolean requestionnement() {
