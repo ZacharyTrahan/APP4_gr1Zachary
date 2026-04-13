@@ -1,9 +1,6 @@
 package electrique;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class CircuitParallele extends Circuit {
 
@@ -16,11 +13,15 @@ public class CircuitParallele extends Circuit {
         double resistanceTotal = 0;
         for (Composant c : getComposants()) {
             double resCheque = c.calculerResistance();
-            if (resCheque > 0) {
-                resistanceTotal += 1 / resCheque;
+            if (resCheque == 0) {
+                return 0;
             }
+            resistanceTotal += 1.0 / resCheque;
         }
-        return 1 / resistanceTotal;
+        if (resistanceTotal == 0) {
+            return 0;
+        }
+        return 1.0 / resistanceTotal;
     }
 }
 

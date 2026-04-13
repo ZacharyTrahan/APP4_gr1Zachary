@@ -17,7 +17,7 @@ public class CircuitBuilder {
     public CircuitBuilder() {
 
     }
-
+//ToDO: rendre lireComposant dynamique
 
     public Composant construireCircuit() {
         ObjectMapper mapper = new ObjectMapper();
